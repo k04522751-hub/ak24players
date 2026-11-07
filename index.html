@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AK24PLAYERS</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,sans-serif;
+    background:#090d18;
+    color:white;
+}
+header{
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111827;
+    border-bottom:1px solid #263044;
+}
+.logo{
+    font-size:24px;
+    font-weight:800;
+    color:#ffd43b;
+}
+.login{
+    background:#ffd43b;
+    color:#111;
+    padding:10px 18px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+.hero{
+    text-align:center;
+    padding:45px 20px 30px;
+}
+.hero h1{
+    font-size:38px;
+    margin-bottom:12px;
+}
+.hero h1 span{color:#ffd43b}
+.hero p{
+    color:#aab4c8;
+    margin-bottom:25px;
+}
+.buttons{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.btn{
+    border:0;
+    padding:14px 25px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+.create{
+    background:#ffd43b;
+    color:#111;
+}
+.join{
+    background:#202a3d;
+    color:white;
+    border:1px solid #39465d;
+}
+.rooms{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+}
+.rooms h2{
+    margin-bottom:15px;
+}
+.card{
+    background:#121a29;
+    border:1px solid #29364c;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:15px;
+}
+.card h3{
+    color:#ffd43b;
+    margin-bottom:8px;
+}
+.card p{
+    color:#aab4c8;
+    margin-bottom:15px;
+}
+.joinroom{
+    background:#ffd43b;
+    color:#111;
+    border:0;
+    padding:10px 18px;
+    border-radius:9px;
+    font-weight:bold;
+}
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    max-width:900px;
+    margin:10px auto 40px;
+    padding:20px;
+}
+.feature{
+    background:#121a29;
+    border:1px solid #29364c;
+    padding:22px;
+    border-radius:15px;
+    text-align:center;
+}
+.feature div{
+    font-size:30px;
+    margin-bottom:10px;
+}
+footer{
+    text-align:center;
+    padding:25px;
+    color:#718096;
+    border-top:1px solid #202a3d;
+}
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+.modalbox{
+    width:100%;
+    max-width:380px;
+    background:#121a29;
+    border-radius:18px;
+    padding:25px;
+}
+.modalbox h2{
+    margin-bottom:15px;
+}
+input{
+    width:100%;
+    padding:14px;
+    margin:8px 0 15px;
+    border-radius:10px;
+    border:1px solid #39465d;
+    background:#0b111d;
+    color:white;
+}
+.close{
+    float:right;
+    cursor:pointer;
+    font-size:24px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AK24PLAYERS</div>
+    <a href="#" class="login" onclick="openLogin()">LOGIN</a>
+</header>
+
+<section class="hero">
+    <h1>Play <span>Ludo</span> With Friends</h1>
+    <p>Create a room, share the code and start playing.</p>
+
+    <div class="buttons">
+        <button class="btn create" onclick="openCreate()">CREATE ROOM</button>
+        <button class="btn join" onclick="openJoin()">JOIN ROOM</button>
+    </div>
+</section>
+
+<section class="rooms">
+    <h2>🎮 Game Rooms</h2>
+
+    <div class="card">
+        <h3>Private Ludo Room</h3>
+        <p>2 Players • Virtual Chips • Ready to Play</p>
+        <button class="joinroom" onclick="openJoin()">JOIN ROOM</button>
+    </div>
+
+    <div class="card">
+        <h3>Friends Room</h3>
+        <p>Share your room code with your friends.</p>
+        <button class="joinroom" onclick="openJoin()">JOIN ROOM</button>
+    </div>
+</section>
+
+<section class="features">
+
+    <div class="feature">
+        <div>🎲</div>
+        <h3>Online Ludo</h3>
+        <p>Play with friends.</p>
+    </div>
+
+    <div class="feature">
+        <div>🔑</div>
+        <h3>Room Code</h3>
+        <p>Private room system.</p>
+    </div>
+
+    <div class="feature">
+        <div>📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Designed for phones.</p>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 AK24PLAYERS
+</footer>
+
+<div class="modal" id="loginModal">
+    <div class="modalbox">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Login</h2>
+        <input type="tel" placeholder="Mobile Number">
+        <button class="btn create" style="width:100%">SEND OTP</button>
+    </div>
+</div>
+
+<div class="modal" id="joinModal">
+    <div class="modalbox">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Join Room</h2>
+        <input type="text" id="roomCode" placeholder="Enter Room Code">
+        <button class="btn create" style="width:100%" onclick="joinRoom()">JOIN ROOM</button>
+    </div>
+</div>
+
+<div class="modal" id="createModal">
+    <div class="modalbox">
+        <span class="close" onclick="closeAll()">×</span>
+        <h2>Create Room</h2>
+        <p style="color:#aab4c8;margin-bottom:15px">
+            Room creation will be connected to the backend in the next step.
+        </p>
+        <button class="btn create" style="width:100%" onclick="closeAll()">CONTINUE</button>
+    </div>
+</div>
+
+<script>
+function openLogin(){
+    document.getElementById("loginModal").style.display="flex";
+}
+function openJoin(){
+    document.getElementById("joinModal").style.display="flex";
+}
+function openCreate(){
+    document.getElementById("createModal").style.display="flex";
+}
+function closeAll(){
+    document.querySelectorAll(".modal").forEach(x=>x.style.display="none");
+}
+function joinRoom(){
+    let code=document.getElementById("roomCode").value.trim();
+    if(!code){
+        alert("Please enter room code");
+        return;
+    }
+    alert("Room code: "+code+"\nBackend connection will be added next.");
+}
+</script>
+
+</body>
+</html>
