@@ -3,273 +3,530 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AK24PLAYERS</title>
+<title>AK24PLAYERS - Play Ludo With Friends</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
 body{
-    font-family:Arial,sans-serif;
-    background:#090d18;
-    color:white;
+  background:#080b14;
+  color:#fff;
+  min-height:100vh;
 }
-header{
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111827;
-    border-bottom:1px solid #263044;
+
+.header{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:#101522;
+  border-bottom:1px solid #242a3a;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
+
 .logo{
-    font-size:24px;
-    font-weight:800;
-    color:#ffd43b;
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-.login{
-    background:#ffd43b;
-    color:#111;
-    padding:10px 18px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
+
+.logo span{
+  color:#00e5ff;
 }
+
+.login-btn{
+  border:0;
+  background:#00d9ff;
+  color:#001018;
+  padding:10px 17px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.container{
+  width:100%;
+  max-width:1050px;
+  margin:auto;
+  padding:18px;
+}
+
 .hero{
-    text-align:center;
-    padding:45px 20px 30px;
+  margin-top:12px;
+  padding:28px 20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#121a2d,#111827);
+  border:1px solid #28324a;
+  text-align:center;
 }
+
 .hero h1{
-    font-size:38px;
-    margin-bottom:12px;
+  font-size:32px;
+  margin-bottom:10px;
 }
-.hero h1 span{color:#ffd43b}
+
+.hero h1 span{
+  color:#00e5ff;
+}
+
 .hero p{
-    color:#aab4c8;
-    margin-bottom:25px;
+  color:#aeb7ca;
+  line-height:1.5;
+  margin-bottom:22px;
 }
-.buttons{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    flex-wrap:wrap;
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
-.btn{
-    border:0;
-    padding:14px 25px;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
+
+.action-btn{
+  padding:15px 10px;
+  border:0;
+  border-radius:13px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
+
 .create{
-    background:#ffd43b;
-    color:#111;
+  background:#00e5ff;
+  color:#001018;
 }
+
 .join{
-    background:#202a3d;
-    color:white;
-    border:1px solid #39465d;
+  background:#242d42;
+  color:white;
+  border:1px solid #39455f;
 }
+
+.section-title{
+  margin:28px 0 13px;
+  font-size:20px;
+}
+
 .rooms{
-    max-width:900px;
-    margin:20px auto;
-    padding:20px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
-.rooms h2{
-    margin-bottom:15px;
+
+.room{
+  background:#111827;
+  border:1px solid #283249;
+  border-radius:15px;
+  padding:17px;
 }
-.card{
-    background:#121a29;
-    border:1px solid #29364c;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:15px;
+
+.room-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
 }
-.card h3{
-    color:#ffd43b;
-    margin-bottom:8px;
+
+.room-name{
+  font-weight:bold;
 }
-.card p{
-    color:#aab4c8;
-    margin-bottom:15px;
+
+.status{
+  color:#41f28b;
+  font-size:13px;
 }
-.joinroom{
-    background:#ffd43b;
-    color:#111;
-    border:0;
-    padding:10px 18px;
-    border-radius:9px;
-    font-weight:bold;
+
+.room-info{
+  color:#9fa9bb;
+  font-size:14px;
+  margin:7px 0;
 }
+
+.room button{
+  width:100%;
+  padding:11px;
+  margin-top:8px;
+  border:0;
+  border-radius:9px;
+  background:#1d9bf0;
+  color:white;
+  font-weight:bold;
+}
+
 .features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-    max-width:900px;
-    margin:10px auto 40px;
-    padding:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
+
 .feature{
-    background:#121a29;
-    border:1px solid #29364c;
-    padding:22px;
-    border-radius:15px;
-    text-align:center;
+  background:#111827;
+  border:1px solid #283249;
+  border-radius:15px;
+  padding:18px 12px;
+  text-align:center;
 }
-.feature div{
-    font-size:30px;
-    margin-bottom:10px;
+
+.icon{
+  font-size:28px;
+  margin-bottom:10px;
 }
-footer{
-    text-align:center;
-    padding:25px;
-    color:#718096;
-    border-top:1px solid #202a3d;
+
+.feature h3{
+  font-size:16px;
+  margin-bottom:7px;
 }
+
+.feature p{
+  color:#929caf;
+  font-size:13px;
+  line-height:1.4;
+}
+
+.footer{
+  text-align:center;
+  padding:30px 10px;
+  color:#737d90;
+  font-size:13px;
+}
+
+/* MODAL */
+
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
 }
-.modalbox{
-    width:100%;
-    max-width:380px;
-    background:#121a29;
-    border-radius:18px;
-    padding:25px;
+
+.modal-box{
+  width:100%;
+  max-width:400px;
+  background:#111827;
+  border:1px solid #303a52;
+  border-radius:18px;
+  padding:22px;
 }
-.modalbox h2{
-    margin-bottom:15px;
+
+.modal-box h2{
+  margin-bottom:7px;
 }
-input{
-    width:100%;
-    padding:14px;
-    margin:8px 0 15px;
-    border-radius:10px;
-    border:1px solid #39465d;
-    background:#0b111d;
-    color:white;
+
+.modal-box p{
+  color:#929caf;
+  font-size:14px;
+  margin-bottom:18px;
 }
+
+.input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #364158;
+  background:#080b14;
+  color:#fff;
+  outline:none;
+  margin-bottom:12px;
+}
+
+.main-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:#00e5ff;
+  color:#001018;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 .close{
-    float:right;
-    cursor:pointer;
-    font-size:24px;
+  width:100%;
+  margin-top:10px;
+  padding:12px;
+  border:1px solid #39445d;
+  border-radius:10px;
+  background:#1a2130;
+  color:white;
+  cursor:pointer;
+}
+
+@media(max-width:650px){
+  .hero h1{
+    font-size:27px;
+  }
+
+  .rooms{
+    grid-template-columns:1fr;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:400px){
+  .actions{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">AK24PLAYERS</div>
-    <a href="#" class="login" onclick="openLogin()">LOGIN</a>
+<header class="header">
+  <div class="logo">AK24<span>PLAYERS</span></div>
+  <button class="login-btn" onclick="openModal('loginModal')">
+    Login
+  </button>
 </header>
 
-<section class="hero">
-    <h1>Play <span>Ludo</span> With Friends</h1>
-    <p>Create a room, share the code and start playing.</p>
+<main class="container">
 
-    <div class="buttons">
-        <button class="btn create" onclick="openCreate()">CREATE ROOM</button>
-        <button class="btn join" onclick="openJoin()">JOIN ROOM</button>
+  <section class="hero">
+    <h1>Play Ludo <span>With Friends</span></h1>
+
+    <p>
+      Create a private room, share the room code
+      and enjoy Ludo with your friends.
+    </p>
+
+    <div class="actions">
+      <button class="action-btn create"
+              onclick="openModal('createModal')">
+        ＋ Create Room
+      </button>
+
+      <button class="action-btn join"
+              onclick="openModal('joinModal')">
+        🎮 Join Room
+      </button>
     </div>
-</section>
+  </section>
 
-<section class="rooms">
-    <h2>🎮 Game Rooms</h2>
+  <h2 class="section-title">Available Rooms</h2>
 
-    <div class="card">
-        <h3>Private Ludo Room</h3>
-        <p>2 Players • Virtual Chips • Ready to Play</p>
-        <button class="joinroom" onclick="openJoin()">JOIN ROOM</button>
+  <section class="rooms">
+
+    <div class="room">
+      <div class="room-top">
+        <div class="room-name">Ludo Room #1001</div>
+        <div class="status">● Waiting</div>
+      </div>
+
+      <div class="room-info">Players: 1 / 2</div>
+      <div class="room-info">Virtual Chips: 10,000</div>
+
+      <button onclick="joinRoom('1001')">
+        Join Room
+      </button>
     </div>
 
-    <div class="card">
-        <h3>Friends Room</h3>
-        <p>Share your room code with your friends.</p>
-        <button class="joinroom" onclick="openJoin()">JOIN ROOM</button>
-    </div>
-</section>
+    <div class="room">
+      <div class="room-top">
+        <div class="room-name">Ludo Room #1002</div>
+        <div class="status">● Waiting</div>
+      </div>
 
-<section class="features">
+      <div class="room-info">Players: 1 / 2</div>
+      <div class="room-info">Virtual Chips: 10,000</div>
+
+      <button onclick="joinRoom('1002')">
+        Join Room
+      </button>
+    </div>
+
+  </section>
+
+  <h2 class="section-title">AK24PLAYERS Features</h2>
+
+  <section class="features">
 
     <div class="feature">
-        <div>🎲</div>
-        <h3>Online Ludo</h3>
-        <p>Play with friends.</p>
+      <div class="icon">🎮</div>
+      <h3>Play With Friends</h3>
+      <p>Create a private room and invite your friends.</p>
     </div>
 
     <div class="feature">
-        <div>🔑</div>
-        <h3>Room Code</h3>
-        <p>Private room system.</p>
+      <div class="icon">🔢</div>
+      <h3>Room Code</h3>
+      <p>Use a unique room code to join your game.</p>
     </div>
 
     <div class="feature">
-        <div>📱</div>
-        <h3>Mobile Friendly</h3>
-        <p>Designed for phones.</p>
+      <div class="icon">🪙</div>
+      <h3>Virtual Chips</h3>
+      <p>Play using virtual chips for free gameplay.</p>
     </div>
 
-</section>
+  </section>
 
-<footer>
-    © 2026 AK24PLAYERS
+</main>
+
+<footer class="footer">
+  © 2026 AK24PLAYERS
+  <br>
+  Free & Virtual-Chip Ludo
 </footer>
 
+
+<!-- LOGIN MODAL -->
+
 <div class="modal" id="loginModal">
-    <div class="modalbox">
-        <span class="close" onclick="closeAll()">×</span>
-        <h2>Login</h2>
-        <input type="tel" placeholder="Mobile Number">
-        <button class="btn create" style="width:100%">SEND OTP</button>
-    </div>
+  <div class="modal-box">
+
+    <h2>Login</h2>
+    <p>Enter your mobile number to continue.</p>
+
+    <input
+      class="input"
+      type="tel"
+      maxlength="10"
+      placeholder="Mobile Number"
+      id="mobileNumber">
+
+    <button class="main-btn" onclick="sendOTP()">
+      Continue
+    </button>
+
+    <button class="close" onclick="closeModal('loginModal')">
+      Close
+    </button>
+
+  </div>
 </div>
+
+
+<!-- JOIN ROOM MODAL -->
 
 <div class="modal" id="joinModal">
-    <div class="modalbox">
-        <span class="close" onclick="closeAll()">×</span>
-        <h2>Join Room</h2>
-        <input type="text" id="roomCode" placeholder="Enter Room Code">
-        <button class="btn create" style="width:100%" onclick="joinRoom()">JOIN ROOM</button>
-    </div>
+  <div class="modal-box">
+
+    <h2>Join Room</h2>
+    <p>Enter your friend's room code.</p>
+
+    <input
+      class="input"
+      type="text"
+      maxlength="8"
+      placeholder="Enter Room Code"
+      id="roomCode">
+
+    <button class="main-btn" onclick="joinFromInput()">
+      Join Room
+    </button>
+
+    <button class="close" onclick="closeModal('joinModal')">
+      Close
+    </button>
+
+  </div>
 </div>
+
+
+<!-- CREATE ROOM MODAL -->
 
 <div class="modal" id="createModal">
-    <div class="modalbox">
-        <span class="close" onclick="closeAll()">×</span>
-        <h2>Create Room</h2>
-        <p style="color:#aab4c8;margin-bottom:15px">
-            Room creation will be connected to the backend in the next step.
-        </p>
-        <button class="btn create" style="width:100%" onclick="closeAll()">CONTINUE</button>
-    </div>
+  <div class="modal-box">
+
+    <h2>Create Room</h2>
+    <p>
+      Your private Ludo room will be created here.
+    </p>
+
+    <input
+      class="input"
+      type="text"
+      placeholder="Room Name">
+
+    <button class="main-btn" onclick="createRoom()">
+      Create Room
+    </button>
+
+    <button class="close" onclick="closeModal('createModal')">
+      Close
+    </button>
+
+  </div>
 </div>
 
+
 <script>
-function openLogin(){
-    document.getElementById("loginModal").style.display="flex";
+
+function openModal(id){
+  document.getElementById(id).style.display = "flex";
 }
-function openJoin(){
-    document.getElementById("joinModal").style.display="flex";
+
+function closeModal(id){
+  document.getElementById(id).style.display = "none";
 }
-function openCreate(){
-    document.getElementById("createModal").style.display="flex";
+
+function joinRoom(code){
+  document.getElementById("roomCode").value = code;
+  openModal("joinModal");
 }
-function closeAll(){
-    document.querySelectorAll(".modal").forEach(x=>x.style.display="none");
+
+function joinFromInput(){
+
+  const code =
+    document.getElementById("roomCode").value.trim();
+
+  if(code.length < 4){
+    alert("Please enter a valid room code.");
+    return;
+  }
+
+  alert(
+    "Room " + code +
+    " selected. Multiplayer backend will be connected in the next step."
+  );
 }
-function joinRoom(){
-    let code=document.getElementById("roomCode").value.trim();
-    if(!code){
-        alert("Please enter room code");
-        return;
-    }
-    alert("Room code: "+code+"\nBackend connection will be added next.");
+
+function sendOTP(){
+
+  const mobile =
+    document.getElementById("mobileNumber").value.trim();
+
+  if(mobile.length !== 10){
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  alert(
+    "OTP login backend will be connected in the next step."
+  );
 }
+
+function createRoom(){
+
+  alert(
+    "Room creation backend will be connected in the next step."
+  );
+
+}
+
+window.onclick = function(event){
+
+  if(event.target.classList.contains("modal")){
+
+    event.target.style.display = "none";
+
+  }
+
+}
+
 </script>
 
 </body>
